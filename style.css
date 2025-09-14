@@ -1,4 +1,4 @@
-/* General Styles */
+/* ================= GENERAL RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -11,9 +11,10 @@ body {
   color: #fff;
   overflow-x: hidden;
   position: relative;
+  scroll-behavior: smooth;
 }
 
-/* Animated Background */
+/* ================= ANIMATED BACKGROUND ================= */
 .animated-bg {
   position: absolute;
   width: 80px;
@@ -21,7 +22,7 @@ body {
   border-radius: 50%;
   background: linear-gradient(45deg, #ff00ff, #00ffff, #ffea00);
   animation: float 12s infinite ease-in-out;
-  opacity: 0.6;
+  opacity: 0.45;
   filter: blur(2px);
 }
 
@@ -33,25 +34,27 @@ body {
 
 @keyframes float {
   0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(-50px) translateX(30px) scale(1.2); }
+  50% { transform: translateY(-50px) translateX(30px) scale(1.3); }
 }
 
-/* Navbar */
+/* ================= NAVBAR ================= */
 header {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 15px 50px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(15px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0px 4px 20px rgba(0,255,255,0.1);
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 800;
   background: linear-gradient(90deg, #ff00ff, #00ffff, #ffea00);
   background-size: 400% 400%;
@@ -77,6 +80,8 @@ header {
   display: flex;
   list-style: none;
   gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links li a {
@@ -104,7 +109,23 @@ header {
 
 .nav-links li a:hover {
   color: #00ffff;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+/* Resume Button Special Highlight */
+.resume-btn {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
+  border-radius: 30px;
+  color: #000 !important;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 12px rgba(255,255,255,0.3);
+}
+
+.resume-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00ffff, 0 0 25px #ff00ff;
 }
 
 .contact-btn {
@@ -113,14 +134,16 @@ header {
   border-radius: 25px;
   color: #000 !important;
   font-weight: bold;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0px 0px 12px rgba(255,255,255,0.2);
 }
 
 .contact-btn:hover {
   transform: scale(1.1);
+  box-shadow: 0px 0px 20px rgba(0,255,255,0.6);
 }
 
-/* Hero Section */
+/* ================= HERO SECTION ================= */
 .hero {
   height: 100vh;
   display: flex;
@@ -132,7 +155,7 @@ header {
 }
 
 .hero h1 { 
-  font-size: 3.5rem; 
+  font-size: 3.6rem; 
   margin-bottom: 10px;
   animation: floatText 6s infinite ease-in-out;
 }
@@ -140,12 +163,13 @@ header {
 .hero h2 { 
   font-size: 2rem; 
   margin-top: 15px; 
+  opacity: 0.95;
 }
 
 .tagline { 
   margin-top: 25px; 
   font-size: 1.3rem; 
-  color: #bbb; 
+  color: #ccc; 
 }
 
 @keyframes floatText {
@@ -153,15 +177,38 @@ header {
   50% { transform: translateY(-10px); }
 }
 
-/* Gradient Text */
-.gradient-text {
-  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffea00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientFlow 6s infinite linear;
+/* ================= PROFILE IMAGE ================= */
+.profile-pic-container {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 3px solid transparent;
+  background: linear-gradient(90deg,#ff00ff,#00ffff,#ffea00);
+  background-size: 300% 300%;
+  animation: gradientFlow 4s infinite linear;
+  box-shadow: 0px 4px 25px rgba(255,255,255,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Sections */
+.profile-pic-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 40px rgba(0,255,255,0.7);
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.profile-pic-container:hover .profile-pic {
+  transform: scale(1.1);
+}
+
+/* ================= SECTIONS ================= */
 .section {
   padding: 90px 20px;
   text-align: center;
@@ -184,7 +231,7 @@ header {
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.07);
   padding: 30px;
   border-radius: 20px;
   min-width: 240px;
@@ -198,17 +245,18 @@ header {
 
 .card:hover {
   transform: translateY(-12px) scale(1.07);
-  box-shadow: 0 0 30px #00ffff, 0 0 20px #ff00ff;
+  box-shadow: 0 0 35px #00ffff, 0 0 25px #ff00ff;
 }
 
-/* Footer */
+/* ================= FOOTER ================= */
 footer {
   padding: 25px;
   text-align: center;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.9);
   margin-top: 60px;
   font-size: 0.9rem;
   color: #aaa;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .footer-links a {
@@ -220,5 +268,14 @@ footer {
 
 .footer-links a:hover {
   color: #ff00ff;
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  header { flex-direction: column; padding: 10px 20px; }
+  .nav-links { flex-wrap: wrap; gap: 15px; justify-content: center; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero h2 { font-size: 1.4rem; }
+  .card { min-width: 90%; }
 }
